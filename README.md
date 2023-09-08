@@ -30,6 +30,10 @@ The main function of the script gets the cookie and token, gets the curl command
 Here is a detailed explanation of each function:
 
 get_headers(): This function gets the cookie and token from the API response. It first makes a request to the API with the Accept header set to a list of acceptable MIME types. The response from the API will contain the cookie and token in the headers. The function then extracts the cookie and token from the headers and returns them as a string.
+
+
+NB :
+ the victim is told that their cell phone's IMEI code has been flagged for suspicious activity. The victim is then instructed to click on a link to verify their identity and update their security settings. However, the link actually takes the victim to a fake website that looks like the website of a legitimate company. Once the victim enters their personal information on the fake website, the scammer can steal it .. Once You Have The Victims Sim Swap Data , You Can Use Them To Do the swap ..
 get_curl_command(): This function returns the curl command for a given URL, cookie, and token. The function takes the URL, cookie, and token as arguments. It then constructs the curl command with the appropriate headers. The function returns the curl command as a string.
 execute_curl_commands(): This function executes the given curl commands. It takes the curl commands as an argument. It then executes each curl command one by one. The function prints the curl command before executing it.
 main(): This is the main function of the script. It gets the cookie and token, gets the curl commands, and executes them.
