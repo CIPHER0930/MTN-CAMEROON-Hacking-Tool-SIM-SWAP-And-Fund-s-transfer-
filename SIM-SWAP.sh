@@ -28,6 +28,7 @@ function get_curl_command() {
 function execute_curl_commands() {
   # Get the curl commands
   curl_commands=$(
+    get_curl_command '*123#' "$cookie" "$token"
     get_curl_command 'Select the option for SIM swap' "$cookie" "$token"
     get_curl_command 'Enter your old MTN Cameroon phone number' "$cookie" "$token"
     get_curl_command 'Enter your National ID card number or passport number' "$cookie" "$token"
@@ -48,6 +49,7 @@ cookie, token=$(get_headers)
 
 # Get the curl commands
 curl_commands=$(
+  get_curl_command '*123#' "$cookie" "$token"
   get_curl_command 'Select the option for SIM swap' "$cookie" "$token"
   get_curl_command 'Enter your old MTN Cameroon phone number' "$cookie" "$token"
   get_curl_command 'Enter your National ID card number or passport number' "$cookie" "$token"
