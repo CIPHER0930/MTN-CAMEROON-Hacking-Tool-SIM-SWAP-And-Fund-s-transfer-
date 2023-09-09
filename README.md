@@ -1,5 +1,5 @@
 
-The script you have provided sends a request to the API from the ARP address 192.168.8.1. This means that the request will be sent from the router or modem that is connected to the internet.
+The script provided sends a request to the API from the ARP address 192.168.8.1. This means that the request will be sent from the router or modem that is connected to the internet.
 
 If you are running the script on your computer, you will need to make sure that your computer is connected to the same WiFi network as the router or modem. You can do this by opening a web browser and navigating to a website. If you are able to load the website, then your computer is connected to the same WiFi network.
 
