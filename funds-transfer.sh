@@ -1,6 +1,6 @@
 #!/bin/bash
 
-Define the get_headers function
+#Define the get_headers function
 function get_headers() {
 
 #Get the response from the API
@@ -29,7 +29,7 @@ fi
 echo "$cookie" "$token"
 }
 
-Define the get_curl_command function
+#Define the get_curl_command function
 function get_curl_command() {
 
 #Get the function arguments
@@ -41,7 +41,7 @@ local token=$3
 echo "curl -X POST '$url' -H 'Cookie: $cookie' -H 'x-requested-with: XMLHttpRequest' -H '__RequestVerificationToken: $token'"
 }
 
-Define the execute_curl_commands function
+#Define the execute_curl_commands function
 function execute_curl_commands() {
 
 #Create a local variable to store the error message
@@ -60,7 +60,7 @@ exit 1
 fi
 }
 
-Define the try_curl_command function
+#Define the try_curl_command function
 function try_curl_command() {
 
 #Get the function arguments
@@ -86,10 +86,9 @@ get_curl_command 'Enter the targets phone number' "$cookie" "$token"
 get_curl_command 'Enter the Amount ' "$cookie" "$token"
 get_curl_command '1' "$cookie" "$token"
 get_curl_command 'Enter the Pin' "$cookie" "$token"
-
 #get_curl_command '' "$cookie" "$token"
 get_curl_command 'Click on the "Submit" button' "$cookie" "$token"
 )
 
-Execute the curl commands
+#Execute the curl commands
 execute_curl_commands "$curl_commands"
