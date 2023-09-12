@@ -24,8 +24,12 @@ def execute_curl_commands(curl_commands):
 
   # Execute the curl commands
   for curl_command in curl_commands:
-    print(curl_command)
-    requests.post(curl_command)
+    try:
+      print(curl_command)
+      requests.post(curl_command)
+    except requests.exceptions.RequestException as e:
+      # Handle the error
+      print(e)
 
 # Get the cookie and token
 cookie, token = get_headers()
