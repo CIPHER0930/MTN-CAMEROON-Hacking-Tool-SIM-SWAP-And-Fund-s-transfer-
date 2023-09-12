@@ -6,19 +6,7 @@ function get_headers() {
 #Get the response from the API
 response=$(curl -k -s -H "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,/;q=0.8,application/signed-exchange;v=b3;q=0.9" 'http://192.168.8.1/api/ussd/send')
 # Extract the cookie and token from the headers
-cookie=$(echo "response"∣grep−E 
-′S
- et−Cookie: 
-′
- ∣cut−d 
-′
- ; 
-′
- −f1∣cut−d 
-′
- = 
-′
- −f2)token=(echo "$response" | grep -E '__RequestVerificationToken:' | cut -d '=' -f2)
+cookie=$(echo "response"∣grep−E ′Set−Cookie: ′ ∣cut−d ′ ; ′ −f1∣cut−d ′ = ′ −f2)token=(echo "$response" | grep -E '__RequestVerificationToken:' | cut -d '=' -f2)
 
 #Return the cookie and token
 if [ -z "$cookie" ] || [ -z "$token" ]; then
