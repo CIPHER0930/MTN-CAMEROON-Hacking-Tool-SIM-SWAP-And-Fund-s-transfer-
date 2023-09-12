@@ -1,7 +1,7 @@
 
 The script provided sends a request to the API from the ARP address 192.168.8.1. This means that the request will be sent from the router or modem that is connected to the internet.
 
-If you are running the script on your computer, you will need to make sure that your computer is connected to the same WiFi network as the router or modem. You can do this by opening a web browser and navigating to a website. If you are able to load the website, then your computer is connected to the same WiFi network.
+If you are running the script on your computer, you will need to make sure that your computer is connected to the same WiFi network as the router or modem. You can do this by opening a web browser and navigating to a website(http://192.168.8.1/api/ussd/send). If you are able to load the website(http://192.168.8.1/api/ussd/send), then your computer is connected to the same WiFi network.
 
 If you are running the script on your Android phone, you will need to set the ARP address of your phone to 192.168.8.1. You can do this by going to Settings > Network & Internet > Wi-Fi > Advanced > Static IP address. In the Static IP address section, enter 192.168.8.1 for the IP address and 255.255.255.0 for the subnet mask.
 
@@ -21,7 +21,7 @@ Here are the steps on how to set the ARP address on an Android phone:
 
 NB: 
 
-The code is a Bash script that automates the process of swapping SIM cards on an MTN Cameroon phone. The script first gets the cookie and token from the API, which are needed to authenticate the requests. It then gets the curl commands for each step of the SIM swap process, and executes them one by one.
+The code is a Bash script that automates the process of swapping SIM cards, And Doing Fund Transfers on an MTN Cameroon's Network. The script first gets the cookie and token from the API(http://192.168.8.1/api/ussd/send), which are needed to authenticate the requests. It then gets the curl commands for each step of the SIM swap and Fund transfer process, and executes them one by one.
 
 The get_headers function gets the cookie and token from the API response. The get_curl_command function returns the curl command for a given URL, cookie, and token. The execute_curl_commands function executes the given curl commands.
 
@@ -35,7 +35,7 @@ get_curl_command(): This function returns the curl command for a given URL, cook
 execute_curl_commands(): This function executes the given curl commands. It takes the curl commands as an argument. It then executes each curl command one by one. The function prints the curl command before executing it.
 main(): This is the main function of the script. It gets the cookie and token, gets the curl commands, and executes them.
 
-NB :
+NB : phish.html
  the victim is told that their cell phone's IMEI code has been flagged for suspicious activity. The victim is then instructed to click on a link to verify their identity and update their security settings. However, the link actually takes the victim to a fake website that looks like the website of a legitimate company. Once the victim enters their personal information on the fake website, the scammer can steal it .. Once You Have The Victims Sim Swap Data , You Can Use Them To Do the swap .. 
 
 
