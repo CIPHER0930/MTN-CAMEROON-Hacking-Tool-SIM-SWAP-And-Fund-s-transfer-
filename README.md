@@ -1,42 +1,52 @@
+MTN-CAMEROON-SIM-SWAP
+This is a Bash script that automates the process of swapping SIM cards and doing fund transfers on an MTN Cameroon's Network.
 
-The script provided sends a request to the API from the ARP address 192.168.8.1. This means that the request will be sent from the router or modem that is connected to the internet.
+Usage:
 
-If you are running the script on your computer, you will need to make sure that your computer is connected to the same WiFi network as the router or modem. You can do this by opening a web browser and navigating to a website(http://192.168.8.1/api/ussd/send). If you are able to load the website(http://192.168.8.1/api/ussd/send), then your computer is connected to the same WiFi network.
+Clone this repository:
+git clone https://github.com/CIPHER0930/MTN-CAMEROON-SIM-SWAP
+Change directory into the repository:
+cd MTN-CAMEROON-SIM-SWAP
+Make sure you are connected to the same WiFi network as the router or modem.
+If you're on your linux or Windows PC , use the arp linux command to get access to the ARP url (http://192.168.8.1), then access the "/api/ussd/send" endpoint . to run the script , First access these ARP URL(http://192.168.8.1/api/ussd/send)
 
 If you are running the script on your Android phone, you will need to set the ARP address of your phone to 192.168.8.1. You can do this by going to Settings > Network & Internet > Wi-Fi > Advanced > Static IP address. In the Static IP address section, enter 192.168.8.1 for the IP address and 255.255.255.0 for the subnet mask.
 
-Once you have made sure that your computer or phone is connected to the same WiFi network and the ARP address is set correctly, you can run the script.
+Run the script:
 
-Here are the steps on how to set the ARP address on an Android phone:
+bash SIM-SWAP.sh && funds-transfer.sh or python swap.py && python funds-transfer.py
+Requirements:
 
-1. Open the Settings app.
-2. Tap on Network & Internet.
-3. Tap on Wi-Fi.
-4. Tap on the name of the WiFi network that you are connected to.
-5. Tap on the three dots in the top right corner.
-6. Tap on Advanced.
-7. Scroll down and tap on Static IP address.
-8. Enter 192.168.8.1 for the IP address and 255.255.255.0 for the subnet mask.
-9. Tap on Save.
+Bash
+curl
+Instructions for setting the ARP address on an Android phone:
 
-NB: 
+Open the Settings app.
+Tap on Network & Internet.
+Tap on Wi-Fi.
+Tap on the name of the WiFi network that you are connected to.
+Tap on the three dots in the top right corner.
+Tap on Advanced.
+Scroll down and tap on Static IP address.
+Enter 192.168.8.1 for the IP address and 255.255.255.0 for the subnet mask.
+Tap on Save.
+Disclaimer:
 
-The code is a Bash script that automates the process of swapping SIM cards, And Doing Fund Transfers on an MTN Cameroon's Network. The script first gets the cookie and token from the API(http://192.168.8.1/api/ussd/send), which are needed to authenticate the requests. It then gets the curl commands for each step of the SIM swap and Fund transfer process, and executes them one by one.
+NB: This script is for educational purposes only. Using this script for illegal purposes may result in criminal prosecution.
 
-The get_headers function gets the cookie and token from the API response. The get_curl_command function returns the curl command for a given URL, cookie, and token. The execute_curl_commands function executes the given curl commands.
+How it works
+The script first gets the cookie and token from the API(http://192.168.8.1/api/ussd/send), which are needed to authenticate the requests. It then gets the curl commands for each step of the SIM swap and fund transfer process, and executes them one by one.
 
-The main function of the script gets the cookie and token, gets the curl commands, and executes them.
-
-Here is a detailed explanation of each function:
-
-get_headers(): This function gets the cookie and token from the API response. It first makes a request to the API with the Accept header set to a list of acceptable MIME types. The response from the API will contain the cookie and token in the headers. The function then extracts the cookie and token from the headers and returns them as a string.
-
-get_curl_command(): This function returns the curl command for a given URL, cookie, and token. The function takes the URL, cookie, and token as arguments. It then constructs the curl command with the appropriate headers. The function returns the curl command as a string.
-execute_curl_commands(): This function executes the given curl commands. It takes the curl commands as an argument. It then executes each curl command one by one. The function prints the curl command before executing it.
+Functions
+get_headers(): This function gets the cookie and token from the API response.
+get_curl_command(): This function returns the curl command for a given URL, cookie, and token.
+execute_curl_commands(): This function executes the given curl commands.
 main(): This is the main function of the script. It gets the cookie and token, gets the curl commands, and executes them.
+Example usage
+bash script.sh
+This will start the SIM swap and fund transfer process.
 
-NB : phish.html
- the victim is told that their cell phone's IMEI code has been flagged for suspicious activity. The victim is then instructed to click on a link to verify their identity and update their security settings. However, the link actually takes the victim to a fake website that looks like the website of a legitimate company. Once the victim enters their personal information on the fake website, the scammer can steal it .. Once You Have The Victims Sim Swap Data , You Can Use Them To Do the swap .. 
+Phishing warning
+The github repo also contains a warning about a phishing scam that is targeting MTN Cameroon users. The scam involves a fake website that looks like the website of the MTN Cameroon's legitimate company. "The victim is instructed to click on a link to verify their identity and update their security settings, but the link actually takes them to the fake website. Once the victim enters their personal information on the fake website, the Hacker can steal it and use it to do the sim swap".
 
-
- 
+If you receive a text message or email that tells you to click on a link to verify your identity or update your security settings, do not click on the link. Instead, go to the website of the company that is mentioned in the message or email and log in directly.
