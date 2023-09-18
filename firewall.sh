@@ -3,25 +3,32 @@
 # Set the IP address of the MoMo server
 MOMO_SERVER_IP="35.240.103.94"
 
-# This script blocks all incoming traffic on the MoMo server's IP address, allows
-# outgoing traffic from the MoMo server's IP address, logs all incoming and
-# outgoing traffic, blocks all incoming traffic on all ports, and allows
-# specific IP addresses. It also includes error handling to check the exit status
-# of the `iptables-save` command.
+# Get the current SIM card ICCID
+SIM_ICCID=$(cat /sys/fs/cgroup/device/phone/modem/0/iccid)
 
-# To use this script, simply run it from the command line. For example:
+# Check if the SIM card ICCID has changed since the last boot
+if [ "$SIM_ICCID" != "$(cat /var/run/sim_iccid)" ]; then
 
-# $ sudo ./firewall.sh
-
-# Flush all current firewall rules
-function flush_firewall_rules() {
+  # The SIM card ICCID has changed, so lock the firewall
   iptables -F
-}
+  iptables -P INPUT DROP
 
-# List all current firewall rules
-function list_firewall_rules() {
-  iptables -L
-}
+  # Add a rule to allow incoming connections from the MoMo server
+  iptables -A INPUT -s "$MOMO_SERVER_IP" -j ACCEPT
+
+  # Add a rule to allow incoming connections from the user's trusted IP address
+  iptables -A INPUT -s 192.168.1.100 -j ACCEPT
+
+  # Save the new firewall rules
+  iptables-save
+
+  # Log the SIM card swap event
+  logger "SIM card swap detected. Firewall locked."
+
+fi
+
+# Update the SIM card ICCID file
+echo "$SIM_ICCID" > /var/run/sim_iccid
 
 # Block all incoming traffic on the MoMo server's IP address
 iptables -A INPUT -s "$MOMO_SERVER_IP" -j DROP
