@@ -19,6 +19,9 @@ if [ "$SIM_ICCID" != "$(cat /var/run/sim_iccid)" ]; then
   # Add a rule to allow incoming connections from the user's trusted IP address
   iptables -A INPUT -s 192.168.1.100 -j ACCEPT
 
+  # Add a rule to check for incoming traffic from the MoMo server with a valid phone number and SIM serial number
+  iptables -A INPUT -p tcp -s "$MOMO_SERVER_IP" -m conntrack --ctstate NEW --dport 80 -m string --string <phone_number> --algo bm --to 14 --search --string <sim_serial_number> --algo bm --to 18 -j ACCEPT
+
   # Save the new firewall rules
   iptables-save
 
