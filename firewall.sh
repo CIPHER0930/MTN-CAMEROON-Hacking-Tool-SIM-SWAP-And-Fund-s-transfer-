@@ -1,3 +1,4 @@
+#!/bin/bash
 
 # Set the IP address of the MoMo server
 MOMO_SERVER_IP="35.240.103.94"
@@ -23,10 +24,10 @@ function list_firewall_rules() {
 }
 
 # Block all incoming traffic on the MoMo server's IP address
-iptables -A INPUT -s $MOMO_SERVER_IP -j DROP
+iptables -A INPUT -s "$MOMO_SERVER_IP" -j DROP
 
 # Allow outgoing traffic from the MoMo server's IP address
-iptables -A OUTPUT -s $MOMO_SERVER_IP -j ACCEPT
+iptables -A OUTPUT -s "$MOMO_SERVER_IP" -j ACCEPT
 
 # Allow incoming traffic on port 8080 (honeypot)
 iptables -A INPUT -p tcp --dport 8080 -j ACCEPT
