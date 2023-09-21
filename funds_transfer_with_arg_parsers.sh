@@ -1,5 +1,6 @@
 #!/bin/bash
 
+figlet -c yellow "MTN MOMO FUNDS TRANSFER"
 # Define a function to get the headers from the USSD server.
 function get_headers() {
 
