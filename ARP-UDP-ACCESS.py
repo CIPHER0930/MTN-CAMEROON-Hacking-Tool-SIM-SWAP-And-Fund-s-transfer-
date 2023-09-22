@@ -44,55 +44,46 @@ def get_device_type():
     A string representing the type of device, such as 'cell', 'android', or 'ios'.
   """
 
-  # TODO: Implement this function to detect the type of device that the script is running on.
+  if os.name == 'android':
+    return 'android'
+  else:
+    return 'cell'
 
-  return 'android'
+
+def get_ngrok_target_arp():
+  """Gets the ARP of the ngrok target.
+
+  Returns:
+    A string representing the ARP of the ngrok target, or None if the ARP
+    could not be detected.
+  """
+
+  ngrok_url = 'https://ngrok.com/api/v2/tunnels'
+  response = requests.get(ngrok_url)
+  ngrok_tunnel = response.json()['tunnels'][0]
+  ngrok_target_arp = ngrok_tunnel['target']['addr']
+
+  return ngrok_target_arp
 
 
-def main():
-  token_id = None
+def send_ussd_message_to_ngrok_target(url_payload, token_id):
+  """Sends the USSD message to the ngrok target.
+
+  Args:
+    url_payload: The URL payload string for the USSD message.
+    token_id: The token ID for the router.
+
+  Returns:
+    A string representing the response to the USSD message.
+  """
+
+  headers = {'Authorization': f'Bearer {token_id}'}
+
+  # Get the ARP of the ngrok target.
+  ngrok_target_arp = get_ngrok_target_arp()
+
+  # Update the URL payload to use the ARP of the ngrok target.
+  url_payload = url_payload.replace('router_ip', ngrok_target_arp)
 
   try:
-    # Get the device type.
-    device_type = get_device_type()
-
-    # If the device is a router, get the token ID.
-    if device_type == 'router':
-      router_url = 'http://localhost:8080'
-      router_username = input('Enter router username: ')
-      router_password = input('Enter router password: ')
-
-      token_id = get_token_id(router_url, router_username, router_password)
-
-    # Get the phone number and USSD message from the user.
-    phone_number = input('Enter phone number: ')
-    ussd_message = input('Enter USSD message: ')
-
-    # Get the ARP address of the router.
-    router_ip = get_router_ip(device_type)
-
-    # If the device is an Android device, set the ARP address to 192.168.8.1.
-    if device_type == 'android':
-      set_arp_address(subprocess.check_output(['ip', 'link', 'show', 'wlan0']).decode().splitlines()[-1].split()[4])
-
-    # Generate a URL payload string for the USSD message.
-    url_payload = generate_url_payload('http://localhost:8080/ussd/send', {
-      'message': ussd_message,
-      'phone_number': phone_number,
-      'router_ip': router_ip
-    })
-
-    # Send the URL payload string to the endpoint.
-    response = send_ussd_message(url_payload, token_id)
-
-    # Print the response to the USSD message.
-    print(response)
-
-  # Handle any errors that occur within the try block.
-  except Exception as e:
-    print(f'Failed to send USSD message: {e}')
-    main()
-
-
-if __name__ == '__main__':
-  main()
+    response = requests.post('http://localhost:8080/ussd/send', headers
