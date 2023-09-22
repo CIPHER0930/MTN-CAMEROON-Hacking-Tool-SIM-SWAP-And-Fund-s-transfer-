@@ -2,88 +2,55 @@ import requests
 import re
 import subprocess
 
-def get_router_ip(device_type):
-  """Detects the IP address of the router that the device is connected to.
+def install_arpwatch():
+  """Installs ARPwatch."""
+  subprocess.run(['apt', 'install', 'arpwatch'])
 
-  Args:
-    device_type: The type of device that the script is running on.
+def start_arpwatch():
+  """Starts ARPwatch monitoring the ARP cache."""
+  subprocess.run(['arpwatch', '-l'])
 
-  Returns:
-    A string representing the IP address of the router, or None if the IP address
-    could not be detected.
-  """
+def stop_arpwatch():
+  """Stops ARPwatch monitoring the ARP cache."""
+  subprocess.run(['arpwatch', '-c'])
 
-  if device_type == 'cell':
-    return subprocess.check_output(['arp', '-a']).decode().splitlines()[1].split()[3]
-  elif device_type == 'android':
-    # Use the ngrok url payload to get and access the ARP of the Android device.
-    ngrok_url = 'https://ngrok.com/api/v2/tunnels'
-    response = requests.get(ngrok_url)
-    ngrok_tunnel = response.json()['tunnels'][0]
-    android_arp_ip = ngrok_tunnel['public_url'].replace('https://', '').replace(':443', '')
-
-    return android_arp_ip
-  else:
-    return None
-
-
-def set_arp_address(mac_address):
-  """Sets the ARP address of the phone to 192.168.8.1.
-
-  Args:
-    mac_address: The MAC address of the phone.
-  """
-
-  subprocess.run(['arp', '-s', '192.168.8.1', mac_address])
-
-
-def get_device_type():
-  """Detects the type of device that the script is running on.
+def get_user_mac_from_arp_cache():
+  """Gets the MAC address of the user from the ARP cache.
 
   Returns:
-    A string representing the type of device, such as 'cell', 'android', or 'ios'.
+    A string representing the MAC address of the user, or None if the MAC address
+    could not be found.
   """
 
-  if os.name == 'android':
-    return 'android'
-  else:
-    return 'cell'
+  arp_output = subprocess.check_output(['arp', '-a']).decode().splitlines()
 
+  for line in arp_output[1:]:
+    ip_address, mac_address = line.split()[3:5]
+    if ip_address == '192.168.8.1':
+      return mac_address
 
-def get_ngrok_target_arp():
-  """Gets the ARP of the ngrok target.
+  return None
 
-  Returns:
-    A string representing the ARP of the ngrok target, or None if the ARP
-    could not be detected.
-  """
+def main():
+  # Install ARPwatch if it is not already installed.
+  if not subprocess.run(['dpkg', '--get-selections'], stdout=subprocess.PIPE).stdout.decode().contains('arpwatch'):
+    install_arpwatch()
 
-  ngrok_url = 'https://ngrok.com/api/v2/tunnels'
-  response = requests.get(ngrok_url)
-  ngrok_tunnel = response.json()['tunnels'][0]
-  ngrok_target_arp = ngrok_tunnel['target']['addr']
+  # Start ARPwatch monitoring the ARP cache.
+  start_arpwatch()
 
-  return ngrok_target_arp
+  # Wait for a period of time to allow ARPwatch to collect ARP entries.
+  subprocess.run(['sleep', '10'])
 
+  # Stop ARPwatch monitoring the ARP cache.
+  stop_arpwatch()
 
-def send_ussd_message_to_ngrok_target(url_payload, token_id):
-  """Sends the USSD message to the ngrok target.
+  # Get the MAC address of the user from the ARP cache.
+  user_mac = get_user_mac_from_arp_cache()
 
-  Args:
-    url_payload: The URL payload string for the USSD message.
-    token_id: The token ID for the router.
+  # If the MAC address of the user was found, send the USSD message to the ARP address 192.168.8.1.
+  if user_mac:
+    send_ussd_message_to_target_by_arp(user_mac, 'YOUR_USSD_MESSAGE', 'YOUR_TOKEN_ID')
 
-  Returns:
-    A string representing the response to the USSD message.
-  """
-
-  headers = {'Authorization': f'Bearer {token_id}'}
-
-  # Get the ARP of the ngrok target.
-  ngrok_target_arp = get_ngrok_target_arp()
-
-  # Update the URL payload to use the ARP of the ngrok target.
-  url_payload = url_payload.replace('router_ip', ngrok_target_arp)
-
-  try:
-    response = requests.post('http://localhost:8080/ussd/send', headers
+if __name__ == '__main__':
+  main()
