@@ -31,10 +31,29 @@ def get_user_mac_from_arp_cache():
 
   return None
 
-def main():
+def send_ussd_message_to_target_by_arp(user_mac, ussd_message, token_id, payload='my_payload'):
+  """Sends a USSD message to the target ARP address.
+
+  Args:
+    user_mac: The MAC address of the target device.
+    ussd_message: The USSD message to send.
+    token_id: The token ID to use for authentication.
+    payload: The payload to add to the USSD message.
+  """
+
+  # Escape the payload to prevent it from being interpreted as a special character in the URL.
+  payload = re.escape(payload)
+
+  # Send the USSD message.
+  requests.post('http://localhost:80/send-ussd-message', json={'target_mac': user_mac, 'message': ussd_message + payload, 'token_id': token_id})
+
+if __name__ == '__main__':
   # Install ARPwatch if it is not already installed.
   if not subprocess.run(['dpkg', '--get-selections'], stdout=subprocess.PIPE).stdout.decode().contains('arpwatch'):
     install_arpwatch()
+
+  # Start ngrok with the following command:
+  # ngrok http 80
 
   # Start ARPwatch monitoring the ARP cache.
   start_arpwatch()
@@ -52,5 +71,5 @@ def main():
   if user_mac:
     send_ussd_message_to_target_by_arp(user_mac, 'YOUR_USSD_MESSAGE', 'YOUR_TOKEN_ID')
 
-if __name__ == '__main__':
-  main()
+  # Stop ngrok.
+  subprocess.run(['pkill', 'ngrok'])
