@@ -62,4 +62,5 @@ else
  echo "Failed to send SMS to 7147: $curl_output"
  exit 1
 fi
-Explain these script
+
+
