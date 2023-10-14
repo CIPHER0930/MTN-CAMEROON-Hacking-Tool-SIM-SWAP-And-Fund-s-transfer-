@@ -20,7 +20,7 @@ Run the sim_swap.py script:
 python sim_swap.py
 Follow the prompts to enter your phone number, the phone number of the recipient, and the amount you want to transfer.
 
-The script will send an SMS message to MTN Cameroon to request the funds transfer.
+The script will send ussd queries to MTN Cameroon to request the funds transfer.
 
 Requirements
 Python 3 (for sim_swap.py)
