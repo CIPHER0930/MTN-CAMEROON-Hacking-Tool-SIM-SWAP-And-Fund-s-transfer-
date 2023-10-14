@@ -1,12 +1,38 @@
+MTN Cameroon SIM Swap and Funds Transfer
+This repository contains two scripts, sim_swap.sh and sim_swap.py, that can be used to swap SIM cards and transfer funds on MTN Cameroon.
+
+Usage
+To swap SIM cards:
+
+Clone the repository:
+git clone https://github.com/CIPHER0930/MTN-CAMEROON-SIM-SWAP-
+Run the sim_swap.sh script:
+./sim_swap.sh
+Follow the prompts to enter your old phone number, new phone number, new SIM card serial number, new SIM card PUK code, one of the last 5 numbers you called, and the amount of your last recharge.
+
+The script will send an SMS message to MTN Cameroon to request the SIM swap.
+
+To transfer funds:
+
+Clone the repository:
+git clone https://github.com/CIPHER0930/MTN-CAMEROON-SIM-SWAP-
+Run the sim_swap.py script:
+python sim_swap.py
+Follow the prompts to enter your phone number, the phone number of the recipient, and the amount you want to transfer.
+
+The script will send an SMS message to MTN Cameroon to request the funds transfer.
+
+Requirements
+Python 3 (for sim_swap.py)
+License
+This repository is licensed under the MIT License.
+
+
+
 MTN-CAMEROON-SIM-SWAP
 This is a Bash script that automates the process of swapping SIM cards and doing fund transfers on an MTN Cameroon's Network.
 
-Usage:
 
-Clone this repository:
-git clone https://github.com/CIPHER0930/MTN-CAMEROON-SIM-SWAP
-Change directory into the repository:
-cd MTN-CAMEROON-SIM-SWAP
 Make sure you are connected to the same WiFi network as the router or modem.
 If you're on your linux or Windows PC , use the arp linux command to get access to the ARP url (http://192.168.8.1), then access the "/api/ussd/send" endpoint . to run the script , First access these ARP URL(http://192.168.8.1/api/ussd/send)
 
