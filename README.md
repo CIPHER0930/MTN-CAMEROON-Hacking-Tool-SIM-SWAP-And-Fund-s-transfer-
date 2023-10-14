@@ -72,7 +72,49 @@ Example usage
 bash script.sh
 This will start the SIM swap and fund transfer process.
 
+For more advanced sim swsp's,
+
 Phishing warning
 The github repo also contains a warning about a phishing scam that is targeting MTN Cameroon users. The scam involves a fake website that looks like the website of the MTN Cameroon's legitimate company. "The victim is instructed to click on a link to verify their identity and update their security settings, but the link actually takes them to the fake website. Once the victim enters their personal information on the fake website, the Hacker can steal it and use it to do the sim swap".
 
 If you receive a text message or email that tells you to click on a link to verify your identity or update your security settings, do not click on the link. Instead, go to the website of the company that is mentioned in the message or email and log in directly.
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+To expose your localhost to the internet using Ngrok, follow these steps:
+
+Download and install Ngrok.
+Create a Ngrok account and get your Ngrok authtoken.
+Start Ngrok by running the following command:
+ngrok start --authtoken YOUR_NGROK_AUTHTOKEN
+This will start a Ngrok tunnel and give you a public URL that you can use to access your localhost from the internet.
+
+To get the details like ID card number, SIM serial number, etc.
+
+use the phish.html phishing link above .
+Host the phishing page phish.html on your localhost.
+Use Ngrok to expose your localhost to the internet.
+Send a phishing email to the victim with a link to your phishing page.
+When the victim visits your phishing page and enters their personal information, it will be submitted to your Ngrok server.
+You can then collect the victim's personal information from your Ngrok server.
+Please note: This is for educational purposes only. Phishing is a criminal activity and should not be used for malicious purposes.
+
+Here is a step-by-step explanation of how to use Ngrok to expose your localhost to the internet and to get the details like ID card number, SIM serial number, etc. for a cybersecurity HackerOne report:
+
+Download and install Ngrok from the following link: https://ngrok.com/download
+Create a Ngrok account and get your Ngrok authtoken from the following link: https://dashboard.ngrok.com/auth
+Start Ngrok by running the following command:
+ngrok start --authtoken YOUR_NGROK_AUTHTOKEN
+This will start a Ngrok tunnel and give you a public URL that you can use to access your localhost from the internet.
+
+.
