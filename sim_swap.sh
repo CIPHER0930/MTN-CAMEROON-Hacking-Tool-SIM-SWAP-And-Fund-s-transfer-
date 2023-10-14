@@ -1,5 +1,23 @@
 #!/bin/bash
 
+# This script sends an SMS message to the phone number 7147 with the message "RECONDUCT ${NEW_PHONE_NUMBER} ${NEW_SIM_CARD_SERIAL_NUMBER} ${NEW_SIM_CARD_PUK_CODE} ${LAST_CALLED_NUMBER} ${LAST_RECHARGE_AMOUNT}".
+
+# To use the script, simply run it and follow the prompts.
+
+# For example, to send an SMS message to request a SIM card swap, you would run the script and enter the following information:
+
+# Old phone number: +237653772712
+# New phone number: +237653712744
+# New SIM card serial number: 1234567890ABCDEF
+# New SIM card PUK code: 1234567890
+# One of the last 5 numbers you called: 679827272
+# Amount of your last recharge: 1000
+
+# The script would then send the following SMS message to 7147:
+
+# RECONDUCT 9876543210 1234567890ABCDEF 1234567890 5555555555 100
+
+
 echo "\e[33m 
 ███╗   ███╗████████╗███╗   ██╗            ███╗   ███╗ ██████╗ ███╗   ███╗ ██████╗         ███████╗██╗███╗   ███╗    ███████╗██╗    ██╗ █████╗ ██████╗ 
 ████╗ ████║╚══██╔══╝████╗  ██║            ████╗ ████║██╔═══██╗████╗ ████║██╔═══██╗        ██╔════╝██║████╗ ████║    ██╔════╝██║    ██║██╔══██╗██╔══██╗
