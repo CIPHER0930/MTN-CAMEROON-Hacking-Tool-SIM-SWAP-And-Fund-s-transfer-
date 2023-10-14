@@ -1,5 +1,5 @@
 MTN Cameroon SIM Swap and Funds Transfer
-This repository contains two scripts, sim_swap.sh and sim_swap.py, that can be used to swap SIM cards and 4 scripts to funds-transfer.sh , funds-transfer.py  transfer funds on MTN Cameroon.
+This repository contains two scripts, sim_swap.sh and sim_swap.py, that can be used to swap SIM cards and 4 scripts to funds-transfer.sh , funds-transfer.py and funds_transfer_with_arg_parsers.shand  funds_transfer_with_arg_parsers.py transfer funds on MTN Cameroon.
 
 Usage
 To swap SIM cards:
