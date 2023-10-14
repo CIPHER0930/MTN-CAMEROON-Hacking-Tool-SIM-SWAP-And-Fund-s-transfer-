@@ -14,7 +14,7 @@ If you are running the script on your Android phone, you will need to set the AR
 
 Run the script:
 
-bash sim_swap.sh && funds-transfer.sh or python swap.py && python funds-transfer.py
+bash sim_swap.sh && funds-transfer.sh or python sim_swap.py && python funds-transfer.py
 Requirements:
 
 Bash
