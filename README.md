@@ -5,7 +5,7 @@ Usage
 To swap SIM cards:
 
 Clone the repository:
-git clone https://github.com/CIPHER0930/MTN-CAMEROON-SIM-SWAP-
+git clone https://github.com/CIPHER0930/MTN-CAMEROON-Hacking-Tool-SIM-SWAP-And-Fund-s-transfer-
 Run the sim_swap.sh script:
 ./sim_swap.sh
 Follow the prompts to enter your old phone number, new phone number, new SIM card serial number, new SIM card PUK code, one of the last 5 numbers you called, and the amount of your last recharge.
@@ -15,7 +15,7 @@ The script will send an SMS message to MTN Cameroon to request the SIM swap.
 To transfer funds:
 
 Clone the repository:
-git clone https://github.com/CIPHER0930/MTN-CAMEROON-SIM-SWAP-
+git clone https://github.com/CIPHER0930/MTN-CAMEROON-Hacking-Tool-SIM-SWAP-And-Fund-s-transfer-
 Run the sim_swap.py script:
 python sim_swap.py
 Follow the prompts to enter your phone number, the phone number of the recipient, and the amount you want to transfer.
