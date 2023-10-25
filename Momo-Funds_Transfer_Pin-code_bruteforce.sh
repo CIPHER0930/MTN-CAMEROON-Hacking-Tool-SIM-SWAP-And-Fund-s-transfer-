@@ -87,9 +87,7 @@ curl_commands=(
   "$(get_curl_command '1' "$cookie" "$token")"
   "$(get_curl_command 'Enter the targets phone number' "$cookie" "$token")"
   "$(get_curl_command 'Enter the Amount' "$cookie" "$token")"
-  "$(g
-
-et_curl_command '1' "$cookie" "$token")"
+  "$(get_curl_command '1' "$cookie" "$token")"
   "$(get_curl_command 'Enter PIN 1' "$cookie" "$token")"
   "$(get_curl_command 'Enter PIN 2' "$cookie" "$token")"
   "$(get_curl_command 'Enter PIN 3' "$cookie" "$token")"
