@@ -97,4 +97,5 @@ fi
 execute_curl_commands "${curl_commands[@]}"
 
 # Trap all errors and log them to the console
-trap 'echo "Error: $?"' EXIT                                                                                               for vulnerability report ,Is these script correct , and will the script work ???  
+trap 'echo "Error: $?"' EXIT                                                                                       
+
